@@ -1,0 +1,31 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Register{% endblock %}
+
+{% block body %}
+    <h1 class="text-3xl text-center mb-10 font-light">Nouveau client ? </h1>
+
+    {{ form_start(registrationForm, {'attr': {'class': 'w-3/12 m-auto'}}) }}
+        <div class="mb-5">
+            {{ form_row(registrationForm.firstname) }}
+        </div>
+        <div class="mb-5">
+            {{ form_row(registrationForm.lastname) }}
+        </div>
+        <div class="mb-5">
+            {{ form_row(registrationForm.date_of_birth) }}
+        </div>
+        <div class="mb-5">
+            {{ form_row(registrationForm.email) }}
+        </div>
+        <div class="mb-5">
+            {{ form_row(registrationForm.password.first) }}
+        </div>
+        <div class="mb-5">
+            {{ form_row(registrationForm.password.second) }}
+        </div>
+
+        {{ form_widget(registrationForm.agreeTerms) }}
+        {{ form_label(registrationForm.agreeTerms) }}
+    {{ form_end(registrationForm) }}
+{% endblock %}
