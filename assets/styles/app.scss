@@ -21,4 +21,9 @@
   height: 3rem;
   display: flex;
   justify-content: space-around;
+  outline: unset;
+}
+
+.custom-error-input {
+  border: red 2px solid;
 }

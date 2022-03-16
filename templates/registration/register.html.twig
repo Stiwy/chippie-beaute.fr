@@ -6,26 +6,69 @@
     <h1 class="text-3xl text-center mb-10 font-light">Nouveau client ? </h1>
 
     {{ form_start(registrationForm, {'attr': {'class': 'w-3/12 m-auto'}}) }}
+
         <div class="mb-5">
-            {{ form_row(registrationForm.firstname) }}
+            {{ form_label(registrationForm.firstname) }}
+            {{ form_widget(registrationForm.firstname) }}
+            <div class="text-red-500 font-bold">{{ form_errors(registrationForm.firstname) }}</div>
         </div>
         <div class="mb-5">
-            {{ form_row(registrationForm.lastname) }}
+            {{ form_label(registrationForm.lastname) }}
+            {{ form_widget(registrationForm.lastname) }}
+            <div class="text-red-500 font-bold">{{ form_errors(registrationForm.lastname) }}</div>
         </div>
         <div class="mb-5">
-            {{ form_row(registrationForm.date_of_birth) }}
+            {{ form_label(registrationForm.date_of_birth) }}
+            {{ form_widget(registrationForm.date_of_birth) }}
+            <div class="text-red-500 font-bold">{{ form_errors(registrationForm.date_of_birth) }}</div>
         </div>
         <div class="mb-5">
-            {{ form_row(registrationForm.email) }}
+            {{ form_label(registrationForm.email) }}
+            {{ form_widget(registrationForm.email) }}
+            <div class="text-red-500 font-bold">{{ form_errors(registrationForm.email) }}</div>
         </div>
         <div class="mb-5">
-            {{ form_row(registrationForm.password.first) }}
+            {{ form_label(registrationForm.password.first) }}
+            <div class="relative">
+                {{ form_widget(registrationForm.password.first, {'attr': {'onkeyup': "testPassword('registration_form_password_first')"}}) }}
+                <i class="fa-solid fa-eye absolute right-2 top-4 text-gray-500" onclick="viewPassword('registration_form_password_first')"></i>
+            </div>
+            <em class="text-sm text-gray-500">Format : 1 majuscule, 1 miniscule, 1 chiffre, 1 caractère spécial (-+!*$@%_/), 8 caractères minimum.</em>
+            <div class="text-red-500 font-bold">{{ form_errors(registrationForm.password.first) }}</div>
         </div>
         <div class="mb-5">
-            {{ form_row(registrationForm.password.second) }}
+            {{ form_label(registrationForm.password.second) }}
+            <div class="relative">
+                {{ form_widget(registrationForm.password.second) }}
+                <i class="fa-solid fa-eye absolute right-2 top-4 text-gray-500" onclick="viewPassword('registration_form_password_second')"></i>
+            </div>
+            <div class="text-red-500 font-bold">{{ form_errors(registrationForm.password.second) }}</div>
         </div>
 
         {{ form_widget(registrationForm.agreeTerms) }}
         {{ form_label(registrationForm.agreeTerms) }}
+        <div class="text-red-500 font-bold">{{ form_errors(registrationForm.agreeTerms) }}</div>
+
+        {{ form_row(registrationForm.submit) }}
+
+        <a href="{{ path('app_login') }}" class="text-sm text-gray-400 hover:text-pink-500">Vous avez un compte ? <span class="text-black hover:opacity-50">Me conncter.</span></a>
     {{ form_end(registrationForm) }}
+
+    <script>
+        function viewPassword(id) {
+            let elt = document.getElementById(id);
+
+            let attribute = (elt.getAttribute('type') === 'password') ? 'text' : 'password';
+            elt.setAttribute('type', attribute);
+        }
+
+        function testPassword(id) {
+            let elt = document.getElementById(id);
+            if (elt.value.match(/^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[-+!*$@%_\/])([-+!*$@%_\w\/]{8,25})$/)) {
+                elt.classList.remove('custom-error-input')
+            } else {
+                elt.classList.add('custom-error-input')
+            }
+        }
+    </script>
 {% endblock %}

@@ -13,9 +13,13 @@ use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Validator\Constraints\Date;
+use Symfony\Component\Validator\Constraints\Email;
+use Symfony\Component\Validator\Constraints\GreaterThan;
 use Symfony\Component\Validator\Constraints\IsTrue;
 use Symfony\Component\Validator\Constraints\Length;
 use Symfony\Component\Validator\Constraints\NotBlank;
+use Symfony\Component\Validator\Constraints\Regex;
 
 class RegistrationFormType extends AbstractType
 {
@@ -55,10 +59,14 @@ class RegistrationFormType extends AbstractType
                 'label_attr' => [
                     'class' => 'custom-label'
                 ],
-                'constraints' => new Length([
-                    'min' => 2,
-                    'max' => 55
-                ]),
+                'constraints' => [
+                    new Length([
+                        'min' => 2,
+                        'max' => 55
+                    ]),
+                    new Email()
+                ],
+
                 'attr' => [
                     'placeholder' => 'Merci de saisir votre adresse email',
                     'class' => 'custom-input'
@@ -96,19 +104,23 @@ class RegistrationFormType extends AbstractType
                 'required' => true,
                 'first_options' => [
                     'label' => 'Mot de passe',
+                    'label_attr' => [
+                        'class' => 'custom-label'
+                    ],
                     'attr' => [
                         'placeholder' => 'Merci de saisir votre mot de passe.',
                         'class' => 'custom-input'
                     ],
                     'constraints' => [
                         new NotBlank([
-                            'message' => 'erci de saisir votre mot de passe.',
+                            'message' => 'Merci de saisir votre mot de passe.',
                         ]),
                         new Length([
-                            'min' => 6,
+                            'min' => 8,
                             'minMessage' => 'Votre mot de passe doit être au moins {{ limit }} characters',
                             'max' => 4096,
                         ]),
+                        new Regex('/^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[-+!*$@%_\/])([-+!*$@%_\w\/]{8,25})$/', 'Votre mot de passe doit contenir au moins, 1 majuscule, 1 miniscule, 1 chiffre, 1 caractère spécial (-+!*$@%_/)')
                     ],
                 ],
                 'second_options' => [
@@ -125,7 +137,7 @@ class RegistrationFormType extends AbstractType
             ->add('submit', SubmitType::class, [
                 'label' => 'Créer mon compte',
                 'attr' => [
-                    'class' => 'mt-3 w-full bg-black text-white h-12 border-2 border-black hover:bg-white hover:text-black'
+                    'class' => 'mt-5 w-full bg-black text-white h-12 border-2 border-black hover:bg-white hover:text-black'
                 ]
             ])
         ;

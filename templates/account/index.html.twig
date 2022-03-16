@@ -1,0 +1,26 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Mon compte{% endblock %}
+
+{% block body %}
+    <div>
+        <h1 class="text-3xl text-center mb-32 font-light">Bonjour <span class="font-bold capitalize text-pink-500">{{ app.user.firstname }}</span>, bienvenue sur votre espace client !</h1>
+
+        <div class="flex justify-around">
+            <a href="" class="hover:border-pink-500 hover:text-pink-500 hover:shadow-xl transition ease-in-out duration-700 block text-center border-2 border-gray-500 text-gray-500 w-3/12 py-10 rounded-md shadow-md">
+                <i class="fa-solid fa-box text-5xl"></i>
+                <h2 class="text-xl mt-5">Mes commandes</h2>
+            </a>
+            <a href="" class="hover:border-pink-500 hover:text-pink-500 hover:shadow-xl transition ease-in-out duration-700 block text-center border-2 border-gray-500 text-gray-500 w-3/12 py-10 rounded-md shadow-md">
+                <i class="fa-solid fa-map-location-dot text-5xl"></i>
+                <h2 class="text-xl mt-5">Mes adresses</h2>
+            </a>
+            <a href="" class="hover:border-pink-500 hover:text-pink-500 hover:shadow-xl transition ease-in-out duration-700 block text-center border-2 border-gray-500 text-gray-500 w-3/12 py-10 rounded-md shadow-md">
+                <i class="fa-solid fa-gears text-5xl"></i>
+                <h2 class="text-xl mt-5">Parametre du compte</h2>
+            </a>
+        </div>
+
+        <a href="{{ path('app_logout') }}" class="text-center mt-20 text-gray-500 block hover:text-pink-500 transition ease-in-out duration-700">Je souhaite <span class="font-bold text-black">me déconnecter</span></a>
+    </div>
+{% endblock %}

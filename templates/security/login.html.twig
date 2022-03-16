@@ -4,11 +4,11 @@
 
 {% block body %}
 <form method="post" class="w-3/12 m-auto">
-    {% if error %}
-        <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
-    {% endif %}
-
     <h1 class="text-3xl text-center mb-10 font-light">Déjà client ?</h1>
+
+    {% if error %}
+        <div class="bg-red-200 border-l-4 border-red-800 text-red-800 py-4 px-3 rounded-r-md -mt-5 flex align-center"><i class="fa-solid fa-circle-exclamation text-2xl mr-2"></i> {{ error.messageKey|trans(error.messageData, 'security') }}</div>
+    {% endif %}
 
     <div class="mt-5">
         <label for="inputEmail" class="font-bold">Adresse e-mail</label>

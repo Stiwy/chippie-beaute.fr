@@ -1,7 +1,7 @@
 <header class="fixed bg-black text-white w-screen top-0">
     <div class="flex items-center justify-between p-5">
         <div class="w-2/12">
-            <a href="" class="text-xl font-bold uppercase tracking-wider">Chippie Beauté</a>
+            <a href="{{ path('app_home') }}" class="text-xl font-bold uppercase tracking-wider">Chippie Beauté</a>
         </div>
         <form action="" class="w-3/5 flex bg-white rounded">
             <input type="search" name="" id="" placeholder="Que recherchez-vuous ?" class="rounded w-full p-2 outline-none text-black">
@@ -9,8 +9,8 @@
         </form>
 
         <div class="w-1/5 flex justify-end items-center">
-            <a href="{{ path('app_login') }}" class="block border border-black transition ease-in-out duration-700 hover:border-white rounded px-2 py-1">
-                <p class="text-xs">Bonjour, identifiez-vous</p>
+            <a href="{% if (app.user) %} {{ path('app_account') }} {% else %} {{ path('app_login') }} {% endif %}" class="block border border-black transition ease-in-out duration-700 hover:border-white rounded px-2 py-1">
+                <p class="text-xs">Bonjour, {% if (app.user) %} {{ app.user.firstname}} {% else %} identifiez-vous {% endif %}</p>
                 <b>Mon compte</b>
             </a>
 
