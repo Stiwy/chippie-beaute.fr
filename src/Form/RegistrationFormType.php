@@ -5,8 +5,10 @@ namespace App\Form;
 use App\Entity\User;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
+use Symfony\Component\Form\Extension\Core\Type\CountryType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
+use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use Symfony\Component\Form\Extension\Core\Type\RepeatedType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
@@ -133,6 +135,66 @@ class RegistrationFormType extends AbstractType
                         'class' => 'custom-input'
                     ]
                 ],
+            ])
+            ->add('phone', TextType::class, [
+                'label' => 'Téléphone',
+                'label_attr' => [
+                    'class' => 'custom-label'
+                ],
+                'attr' => [
+                    'class' => 'custom-input',
+                    'placeholder' => 'Merci de saisir votre numéro de téléphone',
+                ]
+            ])
+            ->add('address', TextType::class, [
+                'label' => 'Adresse',
+                'label_attr' => [
+                    'class' => 'custom-label'
+                ],
+                'attr' => [
+                    'class' => 'custom-input',
+                    'placeholder' => 'Merci de saisir votre adresse',
+                ]
+            ])
+            ->add('address_complement', TextType::class, [
+                'label' => 'Complément d\'adresse',
+                'label_attr' => [
+                    'class' => 'custom-label'
+                ],
+                'attr' => [
+                    'class' => 'custom-input',
+                    'placeholder' => 'Merci de saisir votre complément d\'adresse',
+                ]
+            ])
+            ->add('zip_code', IntegerType::class, [
+                'label' => 'Code postal',
+                'label_attr' => [
+                    'class' => 'custom-label'
+                ],
+                'attr' => [
+                    'class' => 'custom-input',
+                    'placeholder' => 'Merci de saisir votre code postal',
+                ]
+            ])
+            ->add('city', TextType::class, [
+                'label' => 'Ville',
+                'label_attr' => [
+                    'class' => 'custom-label'
+                ],
+                'attr' => [
+                    'class' => 'custom-input',
+                    'placeholder' => 'Merci de saisir votre ville',
+                ]
+            ])
+            ->add('country', CountryType::class, [
+                'label' => 'Pays',
+                'data' => 'FR',
+                'label_attr' => [
+                    'class' => 'custom-label'
+                ],
+                'attr' => [
+                    'class' => 'custom-input',
+                ]
             ])
             ->add('submit', SubmitType::class, [
                 'label' => 'Créer mon compte',

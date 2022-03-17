@@ -22,8 +22,26 @@
   display: flex;
   justify-content: space-around;
   outline: unset;
+
+  &::placeholder {
+    font-size: .9rem;
+  }
 }
 
 .custom-error-input {
   border: red 2px solid;
+}
+
+.black .custom-label {
+  color: white;
+}
+
+.black .custom-input {
+  background-color: #404040;
+  border: #333333;
+  color: white;
+
+  &::placeholder {
+    color: #c2c1c1;
+  }
 }

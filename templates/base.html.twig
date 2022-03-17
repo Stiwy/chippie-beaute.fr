@@ -14,7 +14,8 @@
         {% endblock %}
     </head>
     <body>
-        {% include '_header.html.twig' %}
+        {{ render(controller( 'App\\Controller\\AppController::header')) }}
+
         <div class="mt-44">
             {% block body %}{% endblock %}
         </div>
