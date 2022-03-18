@@ -26,6 +26,7 @@ class SubCategoryCrudController extends AbstractCrudController
             // the labels used to refer to this entity in titles, buttons, etc.
             ->setEntityLabelInSingular('Sous-Catégorie')
             ->setEntityLabelInPlural('Sous-Catégories')
+            ->setDefaultSort(['categorie' => 'DESC'])
             ;
     }
 

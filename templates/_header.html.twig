@@ -28,7 +28,7 @@
                     {% for columnSubCategories in column_sub_categories(categorie.subCategories) %}
                         <li>
                             {% for rowSubcatgories in columnSubCategories|ksort %}
-                                <p><a href="" class=" hover:text-pink-500 {% if rowSubcatgories.bolder  %} font-bold {% endif %}">{{ rowSubcatgories.label }}</a></p>
+                                <p><a href="" class="hover:text-pink-500 {% if rowSubcatgories.bolder  %} font-bold {% endif %}">{{ rowSubcatgories.label }}</a></p>
                             {% endfor %}
                         </li>
                     {% endfor %}
