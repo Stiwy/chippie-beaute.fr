@@ -19,15 +19,17 @@
             </a>
         </div>
     </div>
-    <nav>
+    <nav id="navigation-header">
         <ul class="flex ml-3">
             {% for categorie in categories %}
             <li>
-                <a href="" class="block mx-2 bg-pink-500 rounded-t py-2 px-2">{{ categorie.label }}</a>
-                <ul>
-                    {% for subCategorie in categorie.subCategories %}
+                <a href="" class="block mx-2 hover:text-pink-500 rounded-t py-2 px-2">{{ categorie.label }}</a>
+                <ul class="grid grid-cols-5">
+                    {% for columnSubCategories in column_sub_categories(categorie.subCategories) %}
                         <li>
-                            <a href="">{{ subCategorie.label }}</a>
+                            {% for rowSubcatgories in columnSubCategories|ksort %}
+                                <p><a href="" class=" hover:text-pink-500 {% if rowSubcatgories.bolder  %} font-bold {% endif %}">{{ rowSubcatgories.label }}</a></p>
+                            {% endfor %}
                         </li>
                     {% endfor %}
                 </ul>

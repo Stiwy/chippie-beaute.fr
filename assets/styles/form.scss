@@ -1,0 +1,39 @@
+.custom-label {
+  font-weight: 700;
+}
+
+.custom-input {
+  font-size: 1.125rem;
+  line-height: 1.75rem;
+  padding-left: 0.75rem;
+  --tw-border-opacity: 1;
+  border-color: rgba(107, 114, 128, var(--tw-border-opacity));
+  border-width: 1px;
+  width: 100%;
+  height: 3rem;
+  display: flex;
+  justify-content: space-around;
+  outline: unset;
+
+  &::placeholder {
+    font-size: .9rem;
+  }
+}
+
+.custom-error-input {
+  border: red 2px solid;
+}
+
+.black .custom-label {
+  color: white;
+}
+
+.black .custom-input {
+  background-color: #404040;
+  border: #333333;
+  color: white;
+
+  &::placeholder {
+    color: #c2c1c1;
+  }
+}

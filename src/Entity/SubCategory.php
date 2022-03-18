@@ -34,6 +34,9 @@ class SubCategory
     #[ORM\ManyToOne(targetEntity: Category::class, inversedBy: 'subCategories')]
     private $categorie;
 
+    #[ORM\Column(type: 'integer')]
+    private $positionColumn;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -119,6 +122,18 @@ class SubCategory
     public function setCategorie(?Category $categorie): self
     {
         $this->categorie = $categorie;
+
+        return $this;
+    }
+
+    public function getPositionColumn(): ?int
+    {
+        return $this->positionColumn;
+    }
+
+    public function setPositionColumn(int $positionColumn): self
+    {
+        $this->positionColumn = $positionColumn;
 
         return $this;
     }

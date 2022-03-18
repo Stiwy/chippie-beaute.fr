@@ -33,7 +33,8 @@ class SubCategoryCrudController extends AbstractCrudController
     {
         return [
             IdField::new('id')->hideOnDetail()->hideOnForm()->hideOnIndex(),
-            IntegerField::new('position'),
+            IntegerField::new('position_column', 'Colonne'),
+            IntegerField::new('position', 'Ligne'),
             BooleanField::new('bolder', 'Sous catégorie titre'),
             TextField::new('label'),
             AssociationField::new('categorie')->setCrudController(CategoryCrudController::class),
