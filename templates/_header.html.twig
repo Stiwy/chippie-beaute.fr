@@ -21,11 +21,14 @@
     </div>
     <nav id="navigation-header">
         <ul class="flex ml-3">
-            {% for categorie in categories %}
+            {% for category in categories %}
             <li>
-                <a href="" class="block mx-2 hover:text-pink-500 rounded-t py-2 px-2">{{ categorie.label }}</a>
+                <a href="{{ path('app_category', {'category': category}) }}" id="{{ category.label|lower }}" class="block mx-2 hover:text-pink-500 rounded-t py-2 px-2">{{ category.label }}</a>
                 <ul class="grid grid-cols-5">
-                    {% for columnSubCategories in column_sub_categories(categorie.subCategories) %}
+                    <li>
+                        <a href="{{ path('app_home') }}"><img width="200px" src="upload/images/marktings/fr_be_promo_spring_w12_22.jpeg" alt="Promos de la semaine"></a>
+                    </li>
+                    {% for columnSubCategories in column_sub_categories(category.subCategories) %}
                         <li>
                             {% for rowSubcatgories in columnSubCategories|ksort %}
                                 <p><a href="" class="hover:text-pink-500 {% if rowSubcatgories.bolder  %} font-bold {% endif %}">{{ rowSubcatgories.label }}</a></p>
@@ -38,3 +41,10 @@
         </ul>
     </nav>
 </header>
+
+<script>
+    let headerElt = document.getElementById(document.location.href.split('/')[3].toLowerCase());
+
+    headerElt.classList.add('bg-pink-500');
+    headerElt.classList.remove('hover:text-pink-500');
+</script>

@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\SubCategoryRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: SubCategoryRepository::class)]
@@ -36,6 +38,14 @@ class SubCategory
 
     #[ORM\Column(type: 'integer')]
     private $positionColumn;
+
+    #[ORM\OneToMany(mappedBy: 'subCategory', targetEntity: ProductSheet::class)]
+    private $productSheets;
+
+    public function __construct()
+    {
+        $this->productSheets = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -136,5 +146,40 @@ class SubCategory
         $this->positionColumn = $positionColumn;
 
         return $this;
+    }
+
+    /**
+     * @return Collection<int, ProductSheet>
+     */
+    public function getProductSheets(): Collection
+    {
+        return $this->productSheets;
+    }
+
+    public function addProductSheet(ProductSheet $productSheet): self
+    {
+        if (!$this->productSheets->contains($productSheet)) {
+            $this->productSheets[] = $productSheet;
+            $productSheet->setSubCategory($this);
+        }
+
+        return $this;
+    }
+
+    public function removeProductSheet(ProductSheet $productSheet): self
+    {
+        if ($this->productSheets->removeElement($productSheet)) {
+            // set the owning side to null (unless already changed)
+            if ($productSheet->getSubCategory() === $this) {
+                $productSheet->setSubCategory(null);
+            }
+        }
+
+        return $this;
+    }
+
+    public function __toString(): string
+    {
+        return $this->getLabel();
     }
 }

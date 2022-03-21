@@ -33,6 +33,15 @@ class ProductSheet
     #[ORM\Column(type: 'string', length: 255, nullable: true)]
     private $brand;
 
+    #[ORM\ManyToOne(targetEntity: SubCategory::class, inversedBy: 'productSheets')]
+    private $subCategory;
+
+    #[ORM\Column(type: 'boolean')]
+    private $activ;
+
+    #[ORM\Column(type: 'boolean')]
+    private $featured;
+
     public function __construct()
     {
         $this->products = new ArrayCollection();
@@ -129,6 +138,47 @@ class ProductSheet
     public function setBrand(?string $brand): self
     {
         $this->brand = $brand;
+
+        return $this;
+    }
+
+    public function __toString(): string
+    {
+        return $this->getId() . ' - ' . $this->getTitle();
+    }
+
+    public function getSubCategory(): ?SubCategory
+    {
+        return $this->subCategory;
+    }
+
+    public function setSubCategory(?SubCategory $subCategory): self
+    {
+        $this->subCategory = $subCategory;
+
+        return $this;
+    }
+
+    public function getActiv(): ?bool
+    {
+        return $this->activ;
+    }
+
+    public function setActiv(bool $activ): self
+    {
+        $this->activ = $activ;
+
+        return $this;
+    }
+
+    public function getFeatured(): ?bool
+    {
+        return $this->featured;
+    }
+
+    public function setFeatured(bool $featured): self
+    {
+        $this->featured = $featured;
 
         return $this;
     }

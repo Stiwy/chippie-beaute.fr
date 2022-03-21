@@ -52,6 +52,7 @@ class UserCrudController extends AbstractCrudController
             TextField::new('firstname', 'Prénom'),
             DateField::new('date_of_birth', 'Date de naissance')->hideOnIndex(),
             TextField::new('email', 'E-mail'),
+            IntegerField::new('phone', 'Téléphone'),
             ChoiceField::new('roles', 'Permission')
                 ->allowMultipleChoices()
                 ->autocomplete()

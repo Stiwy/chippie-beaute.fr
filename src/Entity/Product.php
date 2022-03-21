@@ -52,6 +52,12 @@ class Product
     #[ORM\Column(type: 'string', length: 255, nullable: true)]
     private $keywork;
 
+    #[ORM\Column(type: 'boolean')]
+    private $activ;
+
+    #[ORM\Column(type: 'boolean')]
+    private $principal;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -209,6 +215,35 @@ class Product
     public function setKeywork(?string $keywork): self
     {
         $this->keywork = $keywork;
+
+        return $this;
+    }
+
+    public function __toString(): string
+    {
+        return $this->getReference();
+    }
+
+    public function getActiv(): ?bool
+    {
+        return $this->activ;
+    }
+
+    public function setActiv(bool $activ): self
+    {
+        $this->activ = $activ;
+
+        return $this;
+    }
+
+    public function getPrincipal(): ?bool
+    {
+        return $this->principal;
+    }
+
+    public function setPrincipal(bool $principal): self
+    {
+        $this->principal = $principal;
 
         return $this;
     }

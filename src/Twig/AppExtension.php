@@ -2,7 +2,9 @@
 
 namespace App\Twig;
 
+use App\Entity\ProductSheet;
 use App\Entity\SubCategory;
+use App\Service\Price;
 use Doctrine\ORM\PersistentCollection;
 use Twig\Extension\AbstractExtension;
 use Twig\TwigFilter;
