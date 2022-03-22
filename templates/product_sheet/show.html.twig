@@ -1,0 +1,77 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ product.productSheet.title }}{% endblock %}
+
+{% block body %}
+    <div class="w-3/5 m-auto flex">
+        <div class="w-6/12">
+            <img src="{{ asset('upload/images/products/' ~ product.image1) }}" alt="{{ product.title }}">
+            <div class="grid grid-cols-4">
+                {% for image in images %}
+                    {% if image %}
+                        <img src="{{ asset('upload/images/products/' ~ image) }}" alt="{{ product.title }}">
+                    {% endif %}
+                {% endfor %}
+            </div>
+        </div>
+        <div class="w-6/12">
+            <span class="text-sm block -mt-10"><a class="hover:text-pink-500" href="{{ path('app_home') }}">Chippie Beaute</a> / <a class="hover:text-pink-500" href="{{ path('app_category', {'category': product.productSheet.subCategory.categorie.slug}) }}">{{ product.productSheet.subCategory.categorie.label }}</a>  / <a class="hover:text-pink-500" href="{{ path('app_sub_category', {'category': product.productSheet.subCategory.categorie.slug, 'subCategory': product.productSheet.subCategory.slug}) }}">{{ product.productSheet.subCategory.label }}</a> / <b>{{ product.productSheet.title }}</b></span>
+
+            <div class="mt-10">
+                <p class="text-xl font-light tracking-wider">{{ product.productSheet.brand }}</p>
+                <h1 class="text-3xl font-bold">{{ product.productSheet.title }}</h1>
+
+                <div class="mt-5 flex justify-between">
+                    <span>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star-half-stroke"></i>
+                        (4 avis)
+                    </span>
+                    <a href="">Voir les avis</a>
+                </div>
+            </div>
+
+            <div class="mt-10 pt-5 border-t-2 border-gray-300">
+                <div class="flex justify-between">
+                    <p class="text-xl font-bold">{{ product.packing }} {{ product.packingLabel }}</p>
+                    <p class="text-4xl font-bold text-pink-500">{{ price_ttc(product.price, product.tva) }}</p>
+                </div>
+
+                <div>
+                    <form class="mt-5" action="">
+                        <input type="hidden" name="product-reference" id='product-reference' value="{{ product.reference }}" required>
+
+                        <div class="flex justify-between">
+                            <div class="w-1/5">
+                                <select class="custom-input" name="product-quantity" id="product-quantity" required>
+                                    {% for i in 1..product.stock %}
+                                        <option value="{{ i }}">{{ i }}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+
+                            <button type="submit" class="bg-pink-500 text-white font-bold px-4 rounded border-2 border-pink-500 hover:bg-white hover:text-pink-500">Ajouter au panier</button>
+                        </div>
+                    </form>
+                </div>
+
+                <h2 class="text-gray-700 text-2xl font-bold my-5">{{ product.title }}</h2>
+
+                <p>{{ product.productSheet.description|raw }}</p>
+
+                <div class="grid grid-cols-6">
+                {% if product.productSheet.products|length > 1  %}
+                    {% for reference in product.productSheet.products %}
+                        <a class="hover:border-pink-200 border-2 border-white" href="" title="{{ reference.title }}"><img title="{{ reference.title }}" src="{{ asset('upload/images/products/' ~ reference.image1) }}" alt="{{ reference.title }}"></a>
+                    {% endfor %}
+                {% endif %}
+                </div>
+            </div>
+
+        </div>
+    </div>
+    {{ dump(product) }}
+{% endblock %}

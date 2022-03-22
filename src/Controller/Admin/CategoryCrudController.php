@@ -3,13 +3,16 @@
 namespace App\Controller\Admin;
 
 use App\Entity\Category;
+use Doctrine\ORM\EntityManagerInterface;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Action;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Actions;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
 use EasyCorp\Bundle\EasyAdminBundle\Field\BooleanField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\DateField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\IdField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\IntegerField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\SlugField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
 use phpDocumentor\Reflection\Types\Boolean;
 
@@ -33,9 +36,12 @@ class CategoryCrudController extends AbstractCrudController
     {
         return [
             IdField::new('id')->hideOnDetail()->hideOnForm()->hideOnIndex(),
-            IntegerField::new('position'),
-            TextField::new('label'),
-            BooleanField::new('active'),
+            IntegerField::new('position', 'Position'),
+            TextField::new('label', 'Label'),
+            SlugField::new('slug', 'Lien')->setTargetFieldName('label')->hideOnIndex(),
+            BooleanField::new('active', 'Active'),
+            DateField::new('createAt', 'Créé le'),
+            DateField::new('updateAt', 'Mis à jour le'),
         ];
     }
 

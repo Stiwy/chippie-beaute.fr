@@ -26,6 +26,7 @@ class AppExtension extends AbstractExtension
     {
         return [
             new TwigFunction('column_sub_categories', [$this, 'columnSubCategories']),
+            new TwigFunction('price_ttc', [$this, 'priceTTC']),
         ];
     }
 
@@ -39,6 +40,13 @@ class AppExtension extends AbstractExtension
 
         ksort($result);
         return $result;
+    }
+
+    public function priceTTC(string $price, float $tva): string
+    {
+        $price = (float) $price / 100;
+
+        return number_format($price * $tva, 2) . ' €';
     }
 
     public function ksort(array $array): array

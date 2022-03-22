@@ -8,6 +8,10 @@
 
 @import "form";
 
+.grayscale {
+  filter: grayscale(100%) !important;
+}
+
 body {
   height: 6000000px;
 }

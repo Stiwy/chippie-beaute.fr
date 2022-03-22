@@ -58,6 +58,12 @@ class Product
     #[ORM\Column(type: 'boolean')]
     private $principal;
 
+    #[ORM\Column(type: 'integer')]
+    private $packing;
+
+    #[ORM\Column(type: 'string', length: 255)]
+    private $packingLabel;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -244,6 +250,30 @@ class Product
     public function setPrincipal(bool $principal): self
     {
         $this->principal = $principal;
+
+        return $this;
+    }
+
+    public function getPacking(): ?int
+    {
+        return $this->packing;
+    }
+
+    public function setPacking(int $packing): self
+    {
+        $this->packing = $packing;
+
+        return $this;
+    }
+
+    public function getPackingLabel(): ?string
+    {
+        return $this->packingLabel;
+    }
+
+    public function setPackingLabel(string $packingLabel): self
+    {
+        $this->packingLabel = $packingLabel;
 
         return $this;
     }

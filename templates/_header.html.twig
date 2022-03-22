@@ -1,4 +1,4 @@
-<header class="fixed bg-black text-white w-screen top-0">
+<header class="fixed z-50 bg-black text-white w-screen top-0">
     <div class="flex items-center justify-between p-5">
         <div class="w-2/12">
             <a href="{{ path('app_home') }}" class="text-xl font-bold uppercase tracking-wider">Chippie Beauté</a>
@@ -23,15 +23,15 @@
         <ul class="flex ml-3">
             {% for category in categories %}
             <li>
-                <a href="{{ path('app_category', {'category': category}) }}" id="{{ category.label|lower }}" class="block mx-2 hover:text-pink-500 rounded-t py-2 px-2">{{ category.label }}</a>
+                <a href="{{ path('app_category', {'category': category.slug}) }}" id="{{ category.slug|lower }}" class="block mx-2 hover:text-pink-500 rounded-t py-2 px-2">{{ category.label }}</a>
                 <ul class="grid grid-cols-5">
                     <li>
-                        <a href="{{ path('app_home') }}"><img width="200px" src="upload/images/marktings/fr_be_promo_spring_w12_22.jpeg" alt="Promos de la semaine"></a>
+                        <a href="{{ path('app_home') }}"><img width="200px" src="{{ asset('upload/images/marktings/fr_be_promo_spring_w12_22.jpeg') }}" alt="Promos de la semaine"></a>
                     </li>
                     {% for columnSubCategories in column_sub_categories(category.subCategories) %}
                         <li>
                             {% for rowSubcatgories in columnSubCategories|ksort %}
-                                <p><a href="" class="hover:text-pink-500 {% if rowSubcatgories.bolder  %} font-bold {% endif %}">{{ rowSubcatgories.label }}</a></p>
+                                <p><a href="{{ path('app_sub_category', {'category' : category.slug, 'subCategory' : rowSubcatgories.slug }) }}" class="hover:text-pink-500 {% if rowSubcatgories.bolder  %} font-bold {% endif %}">{{ rowSubcatgories.label }}</a></p>
                             {% endfor %}
                         </li>
                     {% endfor %}

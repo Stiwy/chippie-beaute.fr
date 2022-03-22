@@ -55,6 +55,15 @@ class ProductCrudController extends AbstractCrudController
                 '5%' => '1.05',
                 '0%' => '0',
             ]),
+            IntegerField::new('packing', 'Conditionnement')->hideOnIndex(),
+            ChoiceField::new('packingLabel', 'Unité de conditionnement')->hideOnIndex()->setChoices([
+                // $value => $badgeStyleName
+                'Pièces' => 'pcs',
+                'ml' => 'ml',
+                'L' => 'l',
+                'g' => 'g',
+                'kg' => 'kg',
+            ]),
             IntegerField::new('stock', 'Stock'),
             AssociationField::new('productSheet', 'Fiche produit'),
             BooleanField::new('activ', 'Activé'),

@@ -11,6 +11,7 @@ use EasyCorp\Bundle\EasyAdminBundle\Field\AssociationField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\BooleanField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\IdField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\IntegerField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\SlugField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
 
 class SubCategoryCrudController extends AbstractCrudController
@@ -38,6 +39,8 @@ class SubCategoryCrudController extends AbstractCrudController
             IntegerField::new('position', 'Ligne'),
             BooleanField::new('bolder', 'Sous catégorie titre'),
             TextField::new('label'),
+
+            SlugField::new('slug', 'Lien')->setTargetFieldName('label')->hideOnIndex(),
             AssociationField::new('categorie')->setCrudController(CategoryCrudController::class),
             BooleanField::new('active'),
         ];

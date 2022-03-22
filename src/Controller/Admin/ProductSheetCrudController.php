@@ -13,6 +13,7 @@ use EasyCorp\Bundle\EasyAdminBundle\Field\AssociationField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\BooleanField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\DateField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\IdField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\SlugField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextEditorField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
 use EasyCorp\Bundle\EasyAdminBundle\Router\AdminUrlGenerator;
@@ -40,6 +41,7 @@ class ProductSheetCrudController extends AbstractCrudController
         return [
             IdField::new('id', 'Identifiant')->hideOnForm(),
             TextField::new('title', 'Titre'),
+            SlugField::new('slug', 'Liens')->setTargetFieldName('title')->hideOnIndex(),
             BooleanField::new('activ', 'Activé'),
             BooleanField::new('featured', 'Mettre en avant'),
             AssociationField::new('subCategory', 'Sous catégorie'),

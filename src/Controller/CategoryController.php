@@ -10,10 +10,10 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class CategoryController extends AbstractController
 {
-    #[Route('/{category}', name: 'app_category')]
+    #[Route('nos-produits/{category}', name: 'app_category')]
     public function show($category, CategoryRepository $categoryRepository): Response
     {
-        $category = $categoryRepository->findOneBy(['label' => $category, 'active' => true]);
+        $category = $categoryRepository->findOneBy(['slug' => $category, 'active' => true]);
         $productSheetList = [];
 
         $title = $category->getLabel();
@@ -31,6 +31,9 @@ class CategoryController extends AbstractController
                                     'title_reference' => $product->getTitle(),
                                     'brand' => $productSheet->getBrand(),
                                     'image_1' => $product->getImage1(),
+                                    'slug' => $productSheet->getSlug(),
+                                    'reference' => $product->getReference(),
+                                    'sub_category' => $productSheet->getSubCategory(),
                                     'prix_ttc' => Price::priceTTC($product->getPrice(), $product->getTva()),
                                 ];
                             }

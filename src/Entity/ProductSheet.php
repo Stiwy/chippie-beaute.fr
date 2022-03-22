@@ -42,6 +42,9 @@ class ProductSheet
     #[ORM\Column(type: 'boolean')]
     private $featured;
 
+    #[ORM\Column(type: 'string', length: 255)]
+    private $slug;
+
     public function __construct()
     {
         $this->products = new ArrayCollection();
@@ -179,6 +182,18 @@ class ProductSheet
     public function setFeatured(bool $featured): self
     {
         $this->featured = $featured;
+
+        return $this;
+    }
+
+    public function getSlug(): ?string
+    {
+        return $this->slug;
+    }
+
+    public function setSlug(string $slug): self
+    {
+        $this->slug = $slug;
 
         return $this;
     }
